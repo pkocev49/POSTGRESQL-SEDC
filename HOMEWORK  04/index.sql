@@ -30,7 +30,7 @@ SELECT COUNT(grade) AS grade_count FROM  grade
   
 -- Calculate the count of all grades per Teacher in the system
 
-SELECT t.firstname, SUM(g.grade) as totalgrade
+SELECT t.firstname, COUNT(g.grade) as totalgrade
 FROM teacher as t
 	INNER JOIN grade as g ON t.id = g.teacherid
 GROUP BY t.firstname
@@ -57,12 +57,12 @@ GROUP BY g.studentid
 
 -- Calculate the count of all grades per Teacher in the system and filter only grade count greater then 200
 
-SELECT t.firstname AS teacherName,
-COUNT(g.grade) AS totalGrades  
-FROM teacher as t
-INNER JOIN grade AS g ON g.teacherid = t.id
-GROUP BY teacherName
+SELECT g.teacherid, COUNT(g.grade) AS totalGrades
+FROM grade  AS g
+GROUP BY teacherid
 HAVING COUNT(g.grade) > 200
+
+
   
 -- Calculate the count of all grades per Teacher in the system for first 100 Students (ID < 100) and filter teachers with more than 50 Grade count
 SELECT t.firstname as teacherName,

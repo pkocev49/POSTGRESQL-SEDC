@@ -18,7 +18,6 @@ WHERE f.membercost > 0;
 -- and monthly maintenance of the facilities in question.
 SELECT DISTINCT f.facid ,f.name,f.membercost,f.monthlymaintenance
 FROM facilities  AS f
-INNER JOIN bookings AS b ON  f.facid = b.facid
 WHERE f.membercost > 0
 AND f.membercost < f.monthlymaintenance /  50;
 
